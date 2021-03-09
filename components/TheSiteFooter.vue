@@ -12,6 +12,9 @@
     <p class="text-gray-600 text-sm dark:text-gray-500">
       &copy; {{ year }} - <a href="https://www.reddit.com/user/InsideTheSimulation" target="_blank" ref="nofollow, noopener">u/InsideTheSimulation</a> | <a href="https://twitter.com/InsideTheSim" target="_blank" ref="nofollow, noopener">@insideTheSim</a>
     </p>
+    <p class="text-gray-600 text-sm dark:text-gray-500">
+      This project is open-source. Source code available on <a href="https://github.com/InsideTheSim/RatioGang.com" target="_blank" ref="nofollow, noopener" style="text-decoration: underline;">Github</a>.
+    </p>
   </div>
 </template>
 
