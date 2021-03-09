@@ -1,11 +1,5 @@
 <template>
   <div class="eth-stats max-w-screen-sm m-auto">
-    <p class="text-center mb-8 text-red-500">
-      <a href="https://supporteip1559.org">
-        <img src="https://supporteip1559.org/support-1559.png">
-        click to learn more
-      </a>
-    </p>
     <table class="table-fixed">
       <thead>
         <tr>
