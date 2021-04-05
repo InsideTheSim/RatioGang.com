@@ -51,6 +51,27 @@
           </span>
           <transition name="fade">
             <span
+              class="badge death-of-eth-party font-bold dark:text-gray-300"
+              :style="{
+                left: `${deathOfEthPercent}%`,
+              }"
+            >
+              <span class="number">
+                {{ deathOfEth }}
+              </span>
+              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+                <span class="monospace">({{ deathOfEthDollars }})</span>
+              </span>
+              <span class="leading-tight">
+                <a href="https://twitter.com/LUKACACIC/status/1377371626656952326" target="_blank" rel="noopener">
+                  Death of ETH&nbsp;Party
+                </a>
+              </span>
+              <span class="text-4xl leading-none mt-2">🎉</span>
+            </span>
+          </transition>
+          <transition name="fade">
+            <span
               v-show="max <= 0.2"
               class="badge deserved font-bold dark:text-gray-300"
               :style="{
@@ -63,7 +84,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ deservedDollars }})</span>
               </span>
-              <span class="leading-tight">We should at least be here.</span>
+              <span class="leading-tight">We should at least be here</span>
             </span>
           </transition>
           <transition name="fade">
@@ -130,7 +151,8 @@ export default {
       useDragProgress: false,
       previousDragWidthPercent: 0,
       dragWidthPercent: 0,
-      adjustingRatio: false
+      adjustingRatio: false,
+      deathOfEth: 0.03
     }
   },
   computed: {
@@ -165,6 +187,22 @@ export default {
     deservedPercent () {
       if (this.max) {
         return (this.deserved / this.max) * 100
+      }
+      return 0
+    },
+    deathOfEthPercent () {
+      if (this.max) {
+        return (this.deathOfEth / this.max) * 100
+      }
+      return 0
+    },
+    deathOfEthDollars () {
+      if (this.eth) {
+        return formatPrice(
+          ((this.deathOfEth / this.ratio) * this.eth.current_price),
+          this.userSelectedCurrency.format,
+          this.userSelectedCurrency.id
+        )
       }
       return 0
     },
@@ -405,7 +443,8 @@ export default {
   .labels {
     pointer-events: none;
 
-    .reset-button {
+    .reset-button,
+    .death-of-eth-party {
       pointer-events: all;
     }
   }
@@ -454,7 +493,8 @@ export default {
     }
 
     &.target,
-    &.deserved {
+    &.deserved,
+    &.death-of-eth-party {
       top: calc(100% + 1em);
       transform: translateX(-50%);
 
@@ -470,6 +510,24 @@ export default {
         transform: translateX(-50%);
         border: 10px solid transparent;
         border-bottom-color: currentColor;
+      }
+    }
+
+    &.death-of-eth-party {
+      display: none;
+      padding-left: 1em;
+      padding-right: 1em;
+
+      a {
+        font-size: 0.75rem !important;
+        text-decoration: underline;
+      }
+      .leading-none {
+        font-size: 1.66em;
+      }
+
+      @media (min-width: 768px) {
+        display: block;
       }
     }
 
