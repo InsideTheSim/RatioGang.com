@@ -71,7 +71,7 @@ const getters = {
   },
   ratio (state, getters) {
     if (getters.eth && getters.btc) {
-      return parseFloat((getters.eth.current_price / getters.btc.current_price).toFixed(4))
+      return parseFloat((getters.eth.current_price / getters.btc.current_price).toFixed(5))
     }
     return 0
   },
@@ -87,19 +87,19 @@ const getters = {
   },
   ratioPercent (state, getters) {
     if (getters.ratio && getters.flippening) {
-      return parseFloat((getters.ratio / getters.flippening) * 100).toFixed(1)
+      return parseFloat((getters.ratio / getters.flippening) * 100).toFixed(2)
     }
     return 0
   },
   flippening (state, getters) {
     if (getters.eth && getters.btc) {
-      return parseFloat((getters.btc.circulating_supply / getters.eth.circulating_supply).toFixed(4))
+      return parseFloat((getters.btc.circulating_supply / getters.eth.circulating_supply).toFixed(5))
     }
     return 0
   },
   deserved (state, getters) {
     if (getters.flippening) {
-      return parseFloat((getters.flippening / 2).toFixed(4))
+      return parseFloat((getters.flippening / 2).toFixed(5))
     }
     return '0.75'
   },

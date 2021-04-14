@@ -56,7 +56,7 @@ export default {
       if (this.eth && this.btc && this.ratio) {
         const oldEthPrice = this.eth.current_price + this.eth.price_change_24h
         const oldBtcPrice = this.btc.current_price + this.btc.price_change_24h
-        const oldRatio = parseFloat((oldEthPrice / oldBtcPrice).toFixed(4))
+        const oldRatio = parseFloat((oldEthPrice / oldBtcPrice).toFixed(5))
         const ratioChange = (((oldRatio - this.ratio) / oldRatio) * 100).toFixed(2)
         return parseFloat(ratioChange)
       }

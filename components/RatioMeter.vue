@@ -214,7 +214,7 @@ export default {
     },
     calculatedRatio () {
       if (this.useDragProgress) {
-        return ((this.dragWidthPercent * this.max) / 100).toFixed(4)
+        return ((this.dragWidthPercent * this.max) / 100).toFixed(5)
       }
       return this.ratio
     },
@@ -251,7 +251,7 @@ export default {
       this.max = parseFloat(paramMax)
     }
     if (this.$route.query.ratio) {
-      const paramRatio = Math.max(0, Math.min(this.max, parseFloat(this.$route.query.ratio))).toFixed(4)
+      const paramRatio = Math.max(0, Math.min(this.max, parseFloat(this.$route.query.ratio))).toFixed(5)
       this.dragWidthPercent = (paramRatio / this.max) * 100
       this.useDragProgress = true
     }
