@@ -519,6 +519,7 @@ export default {
       .number {
         font-size: 1rem;
         font-weight: normal;
+        letter-spacing: 0.025em;
       }
 
       .badge-label {

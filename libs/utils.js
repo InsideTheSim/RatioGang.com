@@ -1,6 +1,7 @@
 export function formatPrice (price, locale = 'en-US', currency = 'usd') {
-  if (typeof price === 'number') {
-    return price.toLocaleString(locale, {
+  const parsedPrice = parseFloat(price)
+  if (typeof parsedPrice === 'number') {
+    return parsedPrice.toLocaleString(locale, {
       style: 'currency',
       currency
     })
