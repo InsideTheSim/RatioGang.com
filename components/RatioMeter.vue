@@ -45,7 +45,10 @@
             >
               Reset Meter
             </span>
-            <span v-else>
+            <span
+              v-else
+              class="badge-label"
+            >
               We're here.
             </span>
           </span>
@@ -85,7 +88,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ deservedDollars }})</span>
               </span>
-              <span class="leading-tight">We should at least be here</span>
+              <span class="leading-tight badge-label">We should at least be here</span>
             </span>
           </transition>
           <transition name="fade">
@@ -516,6 +519,14 @@ export default {
       .number {
         font-size: 1rem;
         font-weight: normal;
+      }
+
+      .badge-label {
+        font-size: 0.85em;
+
+        @media (min-width: 500px) {
+          font-size: 1em;
+        }
       }
     }
 
