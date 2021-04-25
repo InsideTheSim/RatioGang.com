@@ -8,7 +8,7 @@
       </thead>
       <tbody>
         <tr>
-          <td class="w-1/2"><strong>Cost of Ethereum 2.0 Validator</strong></td>
+          <td class="w-1/2"><strong>Cost of Ethereum PoS Validator</strong></td>
           <td class="w-1/2">{{ nodeCost }}</td>
         </tr>
         <tr>
