@@ -51,6 +51,7 @@
           </span>
           <transition name="fade">
             <span
+              v-if="max < 0.4"
               class="badge death-of-eth-party font-bold dark:text-gray-300"
               :style="{
                 left: `${deathOfEthPercent}%`,
@@ -513,24 +514,6 @@ export default {
       }
     }
 
-    &.death-of-eth-party {
-      display: none;
-      padding-left: 1em;
-      padding-right: 1em;
-
-      a {
-        font-size: 0.75rem !important;
-        text-decoration: underline;
-      }
-      .leading-none {
-        font-size: 1.66em;
-      }
-
-      @media (min-width: 768px) {
-        display: block;
-      }
-    }
-
     // badge animations
     &.badge {
       transition: left 1s 0.1s ease-out, opacity 0.5s 0.5s ease-in-out;
@@ -553,20 +536,60 @@ export default {
       }
     }
 
-    &.deserved {
-      transition: opacity 0.5s 0.5s ease-in-out;
-      opacity: 1;
-      min-width: 145px;
+    &.death-of-eth-party {
+      width: 100px;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
 
-      [data-animate="none"] & {
-        opacity: 0;
+      a {
+        display: block;
+        font-size: 0.75rem !important;
+        line-height: 1.1;
+        text-decoration: underline;
+
+        @media (min-width: 768px) {
+          line-height: inherit;
+        }
       }
-      [data-interactive="true"] & {
-        transition: opacity 0.5s 0.5s ease-in-out, left 0.33s 0s ease-out;
+      .leading-none {
+        font-size: 1.66em;
+      }
+
+      @media (min-width: 500px) {
+        padding-left: 1em;
+        padding-right: 1em;
+        width: 120px;
+      }
+      @media (min-width: 768px) {
+        width: auto;
       }
     }
 
-    &.target {
+    &.deserved {
+      width: 100px;
+      transform: translateX(calc(-50% + 24px));
+
+      &::after {
+        transform: translateX(calc(-50% - 24px));
+      }
+
+      @media (min-width: 500px) {
+        width: auto;
+        min-width: 145px;
+      }
+
+      @media (min-width: 768px) {
+        transform: translateX(calc(-50% + 15px));
+
+        &::after {
+          transform: translateX(calc(-50% - 15px));
+        }
+      }
+    }
+
+    &.target,
+    &.deserved,
+    &.death-of-eth-party {
       transition: opacity 0.5s 0.5s ease-in-out;
       opacity: 1;
 
