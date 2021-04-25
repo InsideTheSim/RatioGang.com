@@ -23,7 +23,7 @@
       </span>
     </span>
     <span class="text-right">
-      <strong class="text-gray-700 dark:text-gray-400">ETH/BTC:</strong> <span class="monospace">{{ ratio }}</span><br>
+      <strong class="text-gray-700 dark:text-gray-400">Ratio:</strong> <span class="monospace">{{ ratio }}</span><br>
       <span class="change-percent" :data-increased="isPossitive(ratioChange24h)">
         {{ ratioChange24h }}% <span class="text-gray-600 dark:text-gray-500">24h change</span>
       </span>
@@ -56,7 +56,7 @@ export default {
       if (this.eth && this.btc && this.ratio) {
         const oldEthPrice = this.eth.current_price + this.eth.price_change_24h
         const oldBtcPrice = this.btc.current_price + this.btc.price_change_24h
-        const oldRatio = parseFloat((oldEthPrice / oldBtcPrice).toFixed(5))
+        const oldRatio = parseFloat((oldEthPrice / oldBtcPrice).toFixed(6))
         const ratioChange = (((oldRatio - this.ratio) / oldRatio) * 100).toFixed(2)
         return parseFloat(ratioChange)
       }

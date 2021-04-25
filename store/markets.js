@@ -71,7 +71,7 @@ const getters = {
   },
   ratio (state, getters) {
     if (getters.eth && getters.btc) {
-      return parseFloat((getters.eth.current_price / getters.btc.current_price).toFixed(5))
+      return parseFloat((getters.eth.current_price / getters.btc.current_price).toFixed(6))
     }
     return 0
   },
