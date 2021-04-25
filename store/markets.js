@@ -34,7 +34,7 @@ const getters = {
       if (getters.prices && getters.coinGecko) {
         const eth = getters.coinGecko.find(item => item.id === 'ethereum')
         return Object.assign({}, eth, {
-          current_price: parseFloat(getters.prices.ethereum)
+          current_price: getters.prices.ethereum
         })
       }
     }
@@ -45,7 +45,7 @@ const getters = {
   },
   eth24hPercentChange (state, getters) {
     if (getters.coinGecko && getters.eth) {
-      return parseFloat(getters.eth.price_change_percentage_24h.toFixed(2))
+      return getters.eth.price_change_percentage_24h.toFixed(2)
     }
     return 0
   },
@@ -54,7 +54,7 @@ const getters = {
       if (getters.prices && getters.coinGecko) {
         const btc = getters.coinGecko.find(item => item.id === 'bitcoin')
         return Object.assign({}, btc, {
-          current_price: parseFloat(getters.prices.bitcoin)
+          current_price: getters.prices.bitcoin
         })
       }
     }
@@ -65,13 +65,13 @@ const getters = {
   },
   btc24hPercentChange (state, getters) {
     if (getters.coinGecko && getters.btc) {
-      return parseFloat(getters.btc.price_change_percentage_24h.toFixed(2))
+      return getters.btc.price_change_percentage_24h.toFixed(2)
     }
     return 0
   },
   ratio (state, getters) {
     if (getters.eth && getters.btc) {
-      return parseFloat((getters.eth.current_price / getters.btc.current_price).toFixed(6))
+      return (getters.eth.current_price / getters.btc.current_price).toFixed(6)
     }
     return 0
   },
@@ -87,19 +87,19 @@ const getters = {
   },
   ratioPercent (state, getters) {
     if (getters.ratio && getters.flippening) {
-      return parseFloat((getters.ratio / getters.flippening) * 100).toFixed(2)
+      return ((getters.ratio / getters.flippening) * 100).toFixed(2)
     }
     return 0
   },
   flippening (state, getters) {
     if (getters.eth && getters.btc) {
-      return parseFloat((getters.btc.circulating_supply / getters.eth.circulating_supply).toFixed(5))
+      return (getters.btc.circulating_supply / getters.eth.circulating_supply).toFixed(5)
     }
     return 0
   },
   deserved (state, getters) {
     if (getters.flippening) {
-      return parseFloat((getters.flippening / 2).toFixed(5))
+      return (getters.flippening / 2).toFixed(5)
     }
     return '0.75'
   },

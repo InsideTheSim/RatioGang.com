@@ -54,11 +54,11 @@ export default {
     }),
     ratioChange24h () {
       if (this.eth && this.btc && this.ratio) {
-        const oldEthPrice = this.eth.current_price + this.eth.price_change_24h
-        const oldBtcPrice = this.btc.current_price + this.btc.price_change_24h
+        const oldEthPrice = parseFloat(this.eth.current_price) + parseFloat(this.eth.price_change_24h)
+        const oldBtcPrice = parseFloat(this.btc.current_price) + parseFloat(this.btc.price_change_24h)
         const oldRatio = parseFloat((oldEthPrice / oldBtcPrice).toFixed(6))
-        const ratioChange = (((oldRatio - this.ratio) / oldRatio) * 100).toFixed(2)
-        return parseFloat(ratioChange)
+        const ratioChange = (((oldRatio - parseFloat(this.ratio)) / oldRatio) * 100).toFixed(2)
+        return ratioChange
       }
       return false
     }
