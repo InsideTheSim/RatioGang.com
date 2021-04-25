@@ -153,7 +153,7 @@
             maxWidth: `${calculatedPercent}%`,
           }"
         >
-          <div class="percent text-xs text-red-800 dark:text-red-200">
+          <div class="percent font-bold text-xs text-red-800 dark:text-red-200">
             {{ calculatedRatioPercent }}%
           </div>
           <div
@@ -744,6 +744,7 @@ export default {
   }
 
   .percent {
+    -webkit-font-smoothing: antialiased;
     position: absolute;
     top: 50%;
     right: 2em;
