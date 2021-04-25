@@ -122,6 +122,26 @@ const getters = {
       )
     }
     return 0
+  },
+  targetDollars2x (state, getters) {
+    if (getters.eth && getters.flippening) {
+      return formatPrice(
+        (((getters.flippening * 2) / getters.ratio) * getters.eth.current_price),
+        getters.userSelectedCurrency.format,
+        getters.userSelectedCurrency.id
+      )
+    }
+    return 0
+  },
+  targetDollars3x (state, getters) {
+    if (getters.eth && getters.flippening) {
+      return formatPrice(
+        (((getters.flippening * 3) / getters.ratio) * getters.eth.current_price),
+        getters.userSelectedCurrency.format,
+        getters.userSelectedCurrency.id
+      )
+    }
+    return 0
   }
 }
 

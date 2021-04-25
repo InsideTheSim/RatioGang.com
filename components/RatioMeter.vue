@@ -105,6 +105,40 @@
               <span class="text-4xl leading-none mt-2">🐬</span>
             </span>
           </transition>
+          <transition name="fade">
+            <span
+              v-show="max >= 0.4"
+              class="badge target dark:text-gray-300"
+              :style="{
+                left: `${targetPercent2x}%`,
+              }"
+            >
+              <span class="number">
+                {{ (flippening * 2).toFixed(5) }}
+              </span>
+              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+                <span class="monospace">({{ targetDollars2x }})</span>
+              </span>
+              <span class="text-3xl leading-none mt-2">🐬🐬</span>
+            </span>
+          </transition>
+          <transition name="fade">
+            <span
+              v-show="max >= 0.6"
+              class="badge target dark:text-gray-300"
+              :style="{
+                left: `${targetPercent3x}%`,
+              }"
+            >
+              <span class="number">
+                {{ (flippening * 3).toFixed(5) }}
+              </span>
+              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+                <span class="monospace">({{ targetDollars3x }})</span>
+              </span>
+              <span class="text-2xl leading-none mt-2">🐬🐬🐬</span>
+            </span>
+          </transition>
           <span class="maximum text-gray-700 dark:text-gray-500">
             {{ max }}
           </span>
@@ -168,7 +202,9 @@ export default {
       flippening: 'markets/flippening',
       deserved: 'markets/deserved',
       deservedDollars: 'markets/deservedDollars',
-      targetDollars: 'markets/targetDollars'
+      targetDollars: 'markets/targetDollars',
+      targetDollars2x: 'markets/targetDollars2x',
+      targetDollars3x: 'markets/targetDollars3x'
     }),
     calculatedPercent () {
       return this.useDragProgress ? this.dragWidthPercent : this.progressPercent
@@ -210,6 +246,18 @@ export default {
     targetPercent () {
       if (this.flippening) {
         return (this.flippening / this.max) * 100
+      }
+      return 0
+    },
+    targetPercent2x () {
+      if (this.flippening) {
+        return ((this.flippening * 2) / this.max) * 100
+      }
+      return 0
+    },
+    targetPercent3x () {
+      if (this.flippening) {
+        return ((this.flippening * 3) / this.max) * 100
       }
       return 0
     },
