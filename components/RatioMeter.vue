@@ -214,7 +214,7 @@ export default {
     },
     calculatedRatioPercent () {
       if (this.useDragProgress) {
-        return ((this.dragWidthPercent / this.targetPercent) * 100).toFixed(1)
+        return ((this.dragWidthPercent / this.targetPercent) * 100).toFixed(2)
       }
       return this.ratioPercent
     },
