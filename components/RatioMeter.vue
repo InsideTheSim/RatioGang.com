@@ -49,7 +49,7 @@
               v-else
               class="badge-label"
             >
-              We're here.
+              We’re here.
             </span>
           </span>
           <transition name="fade">
