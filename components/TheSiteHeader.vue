@@ -8,14 +8,20 @@
         <p v-if="!ratio || ratio < 0.0425">
           Because seriously, what the fuck you guys.
         </p>
-        <p v-else-if="ratio < 0.07">
+        <p v-else-if="ratio < 0.069">
           In retrospect, it was inevitable.
+        </p>
+        <p v-else-if="ratio < 0.07">
+          Nice. 
         </p>
         <p v-else-if="ratio < 0.0813">
           Mom! Get the camera!
         </p>
-        <p v-else-if="ratio < 0.1626">
+        <p v-else-if="ratio < 0.145">
           Approaching sensible value.
+        </p>
+        <p v-else-if="ratio < 0.17">
+          *Excited dolphin noises*
         </p>
         <p v-else>
           We tried to tell you.
