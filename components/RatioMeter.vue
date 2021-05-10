@@ -56,6 +56,7 @@
             <span
               v-if="max < 0.4"
               class="badge death-of-eth-party font-bold dark:text-gray-300"
+              :data-passed="ratio >= deathOfEth"
               :style="{
                 left: `${deathOfEthPercent}%`,
               }"
@@ -78,6 +79,7 @@
             <span
               v-show="max <= 0.2"
               class="badge deserved font-bold dark:text-gray-300"
+              :data-passed="ratio >= deserved"
               :style="{
                 left: `${deservedPercent}%`,
               }"
@@ -95,6 +97,7 @@
             <span
               v-show="max >= 0.2"
               class="badge target dark:text-gray-300"
+              :data-passed="ratio >= flippening"
               :style="{
                 left: `${targetPercent}%`,
               }"
@@ -112,6 +115,7 @@
             <span
               v-show="max >= 0.4"
               class="badge target dark:text-gray-300"
+              :data-passed="ratio >= (flippening * 2).toFixed(5)"
               :style="{
                 left: `${targetPercent2x}%`,
               }"
@@ -129,6 +133,7 @@
             <span
               v-show="max >= 0.6"
               class="badge target dark:text-gray-300"
+              :data-passed="ratio >= (flippening * 3).toFixed(5)"
               :style="{
                 left: `${targetPercent3x}%`,
               }"
@@ -190,7 +195,8 @@ export default {
       previousDragWidthPercent: 0,
       dragWidthPercent: 0,
       adjustingRatio: false,
-      deathOfEth: 0.03
+      deathOfEth: 0.03,
+      activeConfetti: false
     }
   },
   computed: {
@@ -284,6 +290,20 @@ export default {
   watch: {
     calculatedDollars () {
       this.updateTitle()
+    },
+    ratio () {
+      if ((this.ratio > this.deserved) && !this.activeConfetti) {
+        this.$confetti.start({
+          defaultType: 'rect',
+          defaultSize: 8,
+          defaultDropRate: 8
+        })
+        this.activeConfetti = true
+
+        setTimeout(() => {
+          this.$confetti.stop()
+        }, 6000)
+      }
     }
   },
   async mounted () {
@@ -512,6 +532,11 @@ export default {
       padding: 0.5em;
       max-width: 150px;
 
+      &[data-passed="true"] {
+        @apply bg-green-200;
+        @apply dark:bg-green-800;
+      }
+
       span {
         display: block;
       }
@@ -558,6 +583,13 @@ export default {
     &.death-of-eth-party {
       top: calc(100% + 1em);
       transform: translateX(-50%);
+
+      &[data-passed="true"] {
+        &:after {
+          @apply text-green-200;
+          @apply dark:text-green-800;
+        }
+      }
 
       &:after {
         @apply text-blue-100;

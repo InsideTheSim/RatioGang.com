@@ -27,7 +27,8 @@ export default {
   plugins: [
     '~/plugins/vue-select',
     { src: '~/plugins/observe', mode: 'client' },
-    { src: '~/plugins/touch', mode: 'client' }
+    { src: '~/plugins/touch', mode: 'client' },
+    { src: '~/plugins/vue-confetti', mode: 'client' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
