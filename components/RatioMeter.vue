@@ -292,7 +292,7 @@ export default {
       this.updateTitle()
     },
     ratio () {
-      if ((this.ratio > this.deserved) && !this.activeConfetti) {
+      if ((this.ratio >= this.deserved) && !this.activeConfetti) {
         this.$confetti.start({
           defaultType: 'rect',
           defaultSize: 8,
