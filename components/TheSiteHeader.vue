@@ -12,7 +12,7 @@
           In retrospect, it was inevitable.
         </p>
         <p v-else-if="ratio < 0.07">
-          Nice. 
+          Nice.
         </p>
         <p v-else-if="ratio < 0.0813">
           Mom! Get the camera!
