@@ -21,6 +21,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { throttle } from '~/libs/utils'
 
 export default {
   data () {
@@ -72,12 +73,15 @@ export default {
             }
           ))
         }
-        this.coinbaseWSS.onmessage = (msg) => {
-          const data = JSON.parse(msg.data)
-          if (data.type === 'ticker') {
-            this.$store.commit('markets/setPrices', data)
-          }
-        }
+        this.coinbaseWSS.onmessage = throttle(
+          (msg) => {
+            const data = JSON.parse(msg.data)
+            if (data.type === 'ticker') {
+              this.$store.commit('markets/setPrices', data)
+            }
+          },
+          1000
+        )
       }
     }
   }
