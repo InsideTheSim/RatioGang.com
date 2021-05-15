@@ -25,7 +25,8 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      prices: false
+      prices: false,
+      coinbaseWSS: false
     }
   },
   computed: {
@@ -34,8 +35,15 @@ export default {
     })
   },
   watch: {
-    userSelectedCurrency () {
-      this.createPriceFeed()
+    async userSelectedCurrency (newer, older) {
+      if (newer.id !== older.id) {
+        this.$store.commit('markets/resetPrices')
+        if (this.coinbaseWSS) {
+          await this.coinbaseWSS.close()
+          this.coinbaseWSS = false
+        }
+        this.createPriceFeed()
+      }
     }
   },
   mounted () {
@@ -43,10 +51,32 @@ export default {
   },
   methods: {
     createPriceFeed () {
-      if (!this.prices && this.userSelectedCurrency && this.userSelectedCurrency.id === 'usd') {
-        this.prices = new WebSocket('wss://ws.coincap.io/prices?assets=bitcoin,ethereum')
-        this.prices.onmessage = (msg) => {
-          this.$store.commit('markets/setPrices', JSON.parse(msg.data))
+      if (
+        !this.coinbaseWSS &&
+        this.userSelectedCurrency &&
+        ['usd', 'eur', 'gbp'].includes(this.userSelectedCurrency.id)
+      ) {
+        this.coinbaseWSS = new WebSocket('wss://ws-feed.pro.coinbase.com')
+        this.coinbaseWSS.onopen = () => {
+          this.$store.commit('markets/setWebSocketPriceFeed', true)
+          this.coinbaseWSS.send(JSON.stringify(
+            {
+              type: 'subscribe',
+              product_ids: [
+                `ETH-${this.userSelectedCurrency.id.toUpperCase()}`,
+                `BTC-${this.userSelectedCurrency.id.toUpperCase()}`
+              ],
+              channels: [
+                'ticker'
+              ]
+            }
+          ))
+        }
+        this.coinbaseWSS.onmessage = (msg) => {
+          const data = JSON.parse(msg.data)
+          if (data.type === 'ticker') {
+            this.$store.commit('markets/setPrices', data)
+          }
         }
       }
     }

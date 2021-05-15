@@ -5,7 +5,8 @@ import { formatPrice } from '~/libs/utils'
 const state = () => ({
   coinGecko: false,
   prices: {},
-  userSelectedCurrency: false
+  userSelectedCurrency: false,
+  webSocketPriceFeed: false
 })
 
 /**
@@ -17,8 +18,11 @@ const getters = {
   coinGecko (state) {
     return state.coinGecko
   },
+  webSocketPriceFeed (state) {
+    return state.webSocketPriceFeed
+  },
   prices (state) {
-    if (state.prices.ethereum && state.prices.bitcoin) {
+    if (state.prices.eth && state.prices.btc) {
       return state.prices
     }
     return false
@@ -30,11 +34,11 @@ const getters = {
     return state.userSelectedCurrency || currencies[0]
   },
   eth (state, getters) {
-    if (getters.userSelectedCurrency.id === 'usd') {
+    if (['usd', 'eur', 'gbp'].includes(getters.userSelectedCurrency.id)) {
       if (getters.prices && getters.coinGecko) {
         const eth = getters.coinGecko.find(item => item.id === 'ethereum')
         return Object.assign({}, eth, {
-          current_price: getters.prices.ethereum
+          current_price: getters.prices.eth
         })
       }
     }
@@ -50,11 +54,11 @@ const getters = {
     return 0
   },
   btc (state, getters) {
-    if (getters.userSelectedCurrency.id === 'usd') {
+    if (['usd', 'eur', 'gbp'].includes(getters.userSelectedCurrency.id)) {
       if (getters.prices && getters.coinGecko) {
         const btc = getters.coinGecko.find(item => item.id === 'bitcoin')
         return Object.assign({}, btc, {
-          current_price: getters.prices.bitcoin
+          current_price: getters.prices.btc
         })
       }
     }
@@ -189,10 +193,26 @@ const mutations = {
     state.coinGecko = payload
   },
   setPrices (state, payload) {
-    state.prices = Object.assign({}, state.prices, payload)
+    let price = {}
+    if (payload.product_id.startsWith('ETH')) {
+      price = {
+        eth: payload.price
+      }
+    } else if (payload.product_id.startsWith('BTC')) {
+      price = {
+        btc: payload.price
+      }
+    }
+    state.prices = Object.assign({}, state.prices, price)
+  },
+  resetPrices (state) {
+    state.prices = {}
   },
   setUserSelectedCurrency (state, payload) {
     state.userSelectedCurrency = payload
+  },
+  setWebSocketPriceFeed (state, payload) {
+    state.webSocketPriceFeed = payload
   }
 }
 
