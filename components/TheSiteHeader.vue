@@ -2,7 +2,7 @@
   <div class="the-site-header container flex flex-col xs:flex-row items-center justify-center pb-2 pt-4 md:pt-8 px-2">
     <div class="logo-container">
       <h1 class="text-3xl md:text-4xl text-center font-black text-gray-800 dark:text-gray-300">
-        💪 RatioGang 📈
+        💪 RatioGang 🇪🇹
       </h1>
       <div class="text-center text-gray-700 text-sm md:text-md dark:text-gray-400">
         <p v-if="!ratio || ratio < 0.0425">
