@@ -292,17 +292,31 @@ export default {
       this.updateTitle()
     },
     ratio () {
-      if ((this.ratio >= this.deserved) && !this.activeConfetti) {
+      if ((this.ratio >= this.deserved * 0) && !this.activeConfetti) {
         this.$confetti.start({
-          defaultType: 'rect',
+          defaultType: 'image',
           defaultSize: 8,
-          defaultDropRate: 8
+          defaultDropRate: 8,
+          dropRate: 8,
+          particlesPerFrame: 1,
+          particles: [
+            {
+              size: 5,
+              type: 'circle',
+              colors: ['Crimson', 'Gold']
+            },
+            {
+              size: 32,
+              type: 'image',
+              url: '/burn.png'
+            }
+          ]
         })
         this.activeConfetti = true
 
         setTimeout(() => {
           this.$confetti.stop()
-        }, 6000)
+        }, 8000)
       }
     }
   },
