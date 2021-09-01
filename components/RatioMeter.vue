@@ -308,7 +308,7 @@ export default {
             {
               size: 32,
               type: 'image',
-              url: '/burn.png'
+              url: '/burn-flip.png'
             }
           ]
         })

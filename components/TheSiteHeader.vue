@@ -2,7 +2,7 @@
   <div class="the-site-header container flex flex-col xs:flex-row items-center justify-center pb-2 pt-4 md:pt-8 px-2">
     <div class="logo-container">
       <h1 class="text-3xl md:text-4xl text-center font-black text-gray-800 dark:text-gray-300">
-        💪 RatioGang 🇪🇹
+        💪 RatioGang {{ (ratio >= deserved && 0.09 > ratio) ? '🔥' : '🇪🇹' }}
       </h1>
       <div class="text-center text-gray-700 text-sm md:text-md dark:text-gray-400">
         <p v-if="!ratio || ratio < 0.0425">
@@ -14,13 +14,16 @@
         <p v-else-if="ratio < 0.07">
           Nice.
         </p>
-        <p v-else-if="ratio < 0.0813">
+        <p v-else-if="ratio < deserved">
           Mom! Get the camera!
+        </p>
+        <p v-else-if="ratio < 0.09">
+          EIP-1559 sends its regards.
         </p>
         <p v-else-if="ratio < 0.145">
           Approaching sensible value.
         </p>
-        <p v-else-if="ratio < 0.17">
+        <p v-else-if="ratio < flippening">
           *Excited dolphin noises*
         </p>
         <p v-else>
@@ -77,7 +80,9 @@ export default {
   computed: {
     ...mapGetters({
       userSelectedCurrency: 'markets/userSelectedCurrency',
-      ratio: 'markets/ratio'
+      ratio: 'markets/ratio',
+      deserved: 'markets/deserved',
+      flippening: 'markets/flippening'
     })
   },
   watch: {
