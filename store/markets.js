@@ -146,6 +146,16 @@ const getters = {
       )
     }
     return 0
+  },
+  targetDollars4x (state, getters) {
+    if (getters.eth && getters.flippening) {
+      return formatPrice(
+        (((getters.flippening * 4) / getters.ratio) * getters.eth.current_price),
+        getters.userSelectedCurrency.format,
+        getters.userSelectedCurrency.id
+      )
+    }
+    return 0
   }
 }
 

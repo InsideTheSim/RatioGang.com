@@ -55,7 +55,9 @@ export default {
   ],
 
   colorMode: {
-    classSuffix: ''
+    classSuffix: '',
+    preference: 'dark',
+    fallback: 'dark'
   },
 
   // PWA config

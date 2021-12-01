@@ -7,7 +7,7 @@
     <p class="text-gray-700 text-sm py-8 dark:text-gray-400">
       🍻 <strong class="ml-1">Tip Jar:</strong> ratiogang.eth<br>
       <code class="text-xs">0xAf8FBF59e221D27b55DC3ADc2366F9230bCf5096</code><br>
-      <span class="text-xs">All proceeds are converted directly to alcohol until the ratio improves 🙏</span>
+      <span class="text-xs">All proceeds are converted to fancy alcohol because the ratio is improving! 🙌</span>
     </p>
     <p class="text-gray-600 text-sm dark:text-gray-500">
       &copy; {{ year }} - <a href="https://www.reddit.com/user/InsideTheSimulation" target="_blank" ref="nofollow, noopener">u/InsideTheSimulation</a> | <a href="https://twitter.com/InsideTheSim" target="_blank" ref="nofollow, noopener">@insideTheSim</a>

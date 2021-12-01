@@ -8,23 +8,23 @@
       </thead>
       <tbody>
         <tr>
-          <td class="w-1/2"><strong>Cost of Ethereum PoS Validator</strong></td>
+          <td class="w-1/2 text-right"><strong>Cost of Ethereum PoS Validator</strong></td>
           <td class="w-1/2">{{ nodeCost }}</td>
         </tr>
         <tr>
-          <td class="w-1/2"><strong>Ethereum Circulating Supply</strong></td>
+          <td class="w-1/2 text-right"><strong>Ethereum Circulating Supply</strong></td>
           <td class="w-1/2">{{ ethCirculatingSupply }}</td>
         </tr>
         <tr>
-          <td class="w-1/2"><strong>All Time High (ATH)</strong></td>
+          <td class="w-1/2 text-right"><strong>All Time High (ATH)</strong></td>
           <td class="w-1/2">{{ allTimeHigh }}</td>
         </tr>
         <tr>
-          <td class="w-1/2"><strong>Percentage from ATH</strong></td>
+          <td class="w-1/2 text-right"><strong>Percentage from ATH</strong></td>
           <td class="w-1/2">{{ percentageFromAllTimeHigh }}</td>
         </tr>
         <tr>
-          <td class="w-1/2"><strong>Days since ATH</strong></td>
+          <td class="w-1/2 text-right"><strong>Days since ATH</strong></td>
           <td class="w-1/2">{{ daysSinceAllTimeHigh }}</td>
         </tr>
       </tbody>

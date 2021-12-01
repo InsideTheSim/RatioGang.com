@@ -72,7 +72,7 @@
                   Death of ETH&nbsp;Party
                 </a>
               </span>
-              <span class="text-4xl leading-none mt-2">🎉</span>
+              <span class="text-4xl leading-none mt-2 font-normal">🎉</span>
             </span>
           </transition>
           <transition name="fade">
@@ -90,7 +90,8 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ deservedDollars }})</span>
               </span>
-              <span class="leading-tight badge-label">We should at least be here</span>
+              <span class="leading-tight badge-label">Flippty Percent</span>
+              <span class="text-3xl leading-none mt-2 font-normal">🦐</span>
             </span>
           </transition>
           <transition name="fade">
@@ -108,7 +109,8 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars }})</span>
               </span>
-              <span class="text-4xl leading-none mt-2">🐬</span>
+              <span class="leading-tight badge-label">The Flippening</span>
+              <span class="text-3xl leading-none mt-2">🐬</span>
             </span>
           </transition>
           <transition name="fade">
@@ -126,6 +128,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars2x }})</span>
               </span>
+              <span class="leading-tight badge-label">The Double Dolph</span>
               <span class="text-3xl leading-none mt-2">🐬🐬</span>
             </span>
           </transition>
@@ -144,7 +147,27 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars3x }})</span>
               </span>
+              <span class="leading-tight badge-label">The Trip Flip</span>
               <span class="text-2xl leading-none mt-2">🐬🐬🐬</span>
+            </span>
+          </transition>
+          <transition name="fade">
+            <span
+              v-show="max >= 0.8"
+              class="badge target dark:text-gray-300"
+              :data-passed="ratio >= (flippening * 4).toFixed(5)"
+              :style="{
+                left: `${targetPercent4x}%`,
+              }"
+            >
+              <span class="number">
+                {{ (flippening * 4).toFixed(5) }}
+              </span>
+              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+                <span class="monospace">({{ targetDollars4x }})</span>
+              </span>
+              <span class="leading-tight badge-label">Quad Pod</span>
+              <span class="text-2xl leading-none mt-2">🐬🐬<br>🐬🐬</span>
             </span>
           </transition>
           <span class="maximum text-gray-700 dark:text-gray-500">
@@ -213,7 +236,8 @@ export default {
       deservedDollars: 'markets/deservedDollars',
       targetDollars: 'markets/targetDollars',
       targetDollars2x: 'markets/targetDollars2x',
-      targetDollars3x: 'markets/targetDollars3x'
+      targetDollars3x: 'markets/targetDollars3x',
+      targetDollars4x: 'markets/targetDollars4x'
     }),
     calculatedPercent () {
       return this.useDragProgress ? this.dragWidthPercent : this.progressPercent
@@ -270,6 +294,12 @@ export default {
       }
       return 0
     },
+    targetPercent4x () {
+      if (this.flippening) {
+        return ((this.flippening * 4) / this.max) * 100
+      }
+      return 0
+    },
     calculatedRatio () {
       if (this.useDragProgress) {
         return ((this.dragWidthPercent * this.max) / 100).toFixed(6)
@@ -290,35 +320,35 @@ export default {
   watch: {
     calculatedDollars () {
       this.updateTitle()
-    },
-    ratio () {
-      if ((this.ratio >= this.deserved) && !this.activeConfetti) {
-        this.$confetti.start({
-          defaultType: 'image',
-          defaultSize: 8,
-          defaultDropRate: 8,
-          dropRate: 8,
-          particlesPerFrame: 1,
-          particles: [
-            {
-              size: 5,
-              type: 'circle',
-              colors: ['Crimson', 'Gold']
-            },
-            {
-              size: 32,
-              type: 'image',
-              url: '/burn-flip.png'
-            }
-          ]
-        })
-        this.activeConfetti = true
-
-        setTimeout(() => {
-          this.$confetti.stop()
-        }, 8000)
-      }
     }
+    // ratio () {
+    //   if ((this.ratio >= this.deserved) && !this.activeConfetti) {
+    //     this.$confetti.start({
+    //       defaultType: 'image',
+    //       defaultSize: 8,
+    //       defaultDropRate: 8,
+    //       dropRate: 8,
+    //       particlesPerFrame: 1,
+    //       particles: [
+    //         {
+    //           size: 5,
+    //           type: 'circle',
+    //           colors: ['Crimson', 'Gold']
+    //         },
+    //         {
+    //           size: 32,
+    //           type: 'image',
+    //           url: '/burn-flip.png'
+    //         }
+    //       ]
+    //     })
+    //     this.activeConfetti = true
+
+    //     setTimeout(() => {
+    //       this.$confetti.stop()
+    //     }, 8000)
+    //   }
+    // }
   },
   async mounted () {
     this.restoreUserPreferredCurrency()
@@ -565,7 +595,7 @@ export default {
         font-size: 0.85em;
 
         @media (min-width: 500px) {
-          font-size: 1em;
+          font-size: 0.9em;
         }
       }
     }

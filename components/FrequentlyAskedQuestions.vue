@@ -21,23 +21,27 @@
 
     <div class="question pb-8">
       <h3 class="text-2xl mb-4 font-bold text-gray-700 leading-tight dark:text-gray-400">
-        What‘s up with the dolphin emoji on the ratio meter?
+        What's up with the shrimp on the ratio meter?
       </h3>
-      <p>The dolphin references “The Flippening” (where the total market cap of Ethereum is greater than that of Bitcoin). Currently that target is <code>{{ flippening }}</code> and reaching that ratio would indicate that the market sees both networks as being equal in value.</p>
+      <p>
+        The shrimp represents "Flippty Percent" which is a fun way of saying we're half way to "The Flippening".
+      </p>
+      <p>
+        Back when this project was first created, back in the dark times below <code>0.03</code>, reaching 50% of The Flippening target was a notable milestone. Now it's just a historic marker on the meter and a helpful halfway marker.
+      </p>
     </div>
 
     <div class="question">
       <h3 class="text-2xl mb-4 font-bold text-gray-700 leading-tight dark:text-gray-400">
-        Why do you say “we should at least be here” at <code>{{ deserved }}</code> on the ratio meter?
+        What‘s up with the dolphin emoji on the ratio meter?
       </h3>
-      <p>
-        Because that is half way to "The Flippening". Another way to view the <code>{{ deserved }}</code> target is to frame it as a question in plain English:
-      </p>
+      <p>The dolphin references “The Flippening” (where the total market cap of Ethereum is greater than that of Bitcoin). Currently that target is <code>{{ flippening }}</code> and reaching that ratio would indicate that the market sees both networks as being equal in value.</p>
+      <p>I believe The Flippening is inevitable and is best understood by asking yourself:</p>
       <p class="italic font-bold text-lg">
-        “is the Ethereum network - with everything it can do and everything that’s running on top of it - worth at least half as much as the Bitcoin network?”
+        “is the Ethereum network - with everything it can do, everything that’s built on top of it, and all of the economic value it secures - serously worth less than the single-purpose Bitcoin network?”
       </p>
       <p>
-        For me that answer is an obvious “yes”. That means <em>if</em> BTC is priced correctly then anything less than <code>{{ deserved }}</code> on the ratio is a strong signal that Ethereum is currently undervalued.
+        For me that answer is an obvious “no way”. That means <em>if</em> BTC is priced correctly then anything less than <code>{{ flippening }}</code> on the ratio is a strong signal that Ethereum is currently undervalued.
       </p>
     </div>
   </div>
