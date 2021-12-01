@@ -38,7 +38,7 @@
       <p>The dolphin references “The Flippening” (where the total market cap of Ethereum is greater than that of Bitcoin). Currently that target is <code>{{ flippening }}</code> and reaching that ratio would indicate that the market sees both networks as being equal in value.</p>
       <p>I believe The Flippening is inevitable and is best understood by asking yourself:</p>
       <p class="italic font-bold text-lg">
-        “is the Ethereum network - with everything it can do, everything that’s built on top of it, and all of the economic value it secures - serously worth less than the single-purpose Bitcoin network?”
+        “is the Ethereum network - with everything it can do, everything that’s built on top of it, and all of the economic value it secures - seriously worth less than the single-purpose Bitcoin network?”
       </p>
       <p>
         For me that answer is an obvious “no way”. That means <em>if</em> BTC is priced correctly then anything less than <code>{{ flippening }}</code> on the ratio is a strong signal that Ethereum is currently undervalued.
