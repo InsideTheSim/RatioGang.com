@@ -78,7 +78,7 @@
           <transition name="fade">
             <span
               v-show="max <= 0.2"
-              class="badge deserved font-bold dark:text-gray-300"
+              class="badge deserved dark:text-gray-300"
               :data-passed="ratio >= deserved"
               :style="{
                 left: `${deservedPercent}%`,
@@ -90,7 +90,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ deservedDollars }})</span>
               </span>
-              <span class="leading-tight badge-label">Flippty&nbsp;Percent</span>
+              <span class="leading-tight tracking-tight badge-label">Flippty&nbsp;Percent</span>
               <span class="text-3xl leading-none mt-2 font-normal">🦐</span>
             </span>
           </transition>
@@ -109,7 +109,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars }})</span>
               </span>
-              <span class="leading-tight badge-label">The&nbsp;Flippening</span>
+              <span class="leading-tight tracking-tight badge-label">The&nbsp;Flippening</span>
               <span class="text-3xl leading-none mt-2">🐬</span>
             </span>
           </transition>
@@ -128,7 +128,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars2x }})</span>
               </span>
-              <span class="leading-tight badge-label">The Double&nbsp;Dolph</span>
+              <span class="leading-tight tracking-tight badge-label">The Double&nbsp;Dolph</span>
               <span class="text-3xl leading-none mt-2">🐬🐬</span>
             </span>
           </transition>
@@ -147,7 +147,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars3x }})</span>
               </span>
-              <span class="leading-tight badge-label">The Trip&nbsp;Flip</span>
+              <span class="leading-tight tracking-tight badge-label">The Trip&nbsp;Flip</span>
               <span class="text-2xl leading-none mt-2">🐬🐬🐬</span>
             </span>
           </transition>
@@ -166,7 +166,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars4x }})</span>
               </span>
-              <span class="leading-tight badge-label">The Quad&nbsp;Pod</span>
+              <span class="leading-tight tracking-tight badge-label">The Quad&nbsp;Pod</span>
               <span class="text-2xl leading-none mt-2">🐬🐬<br>🐬🐬</span>
             </span>
           </transition>
@@ -565,10 +565,11 @@ export default {
     &.badge {
       @apply bg-blue-100;
       @apply dark:bg-gray-700;
+      border: 1px solid rgb(31, 41, 55);
       border-radius: 5px;
       display: block;
       padding: 0.5em;
-      max-width: 150px;
+      width: 110px;
 
       &[data-passed="true"] {
         @apply bg-green-200;
@@ -667,7 +668,6 @@ export default {
     }
 
     &.death-of-eth-party {
-      width: 100px;
       padding-left: 0.5em;
       padding-right: 0.5em;
 
@@ -684,28 +684,13 @@ export default {
       .leading-none {
         font-size: 1.66em;
       }
-
-      @media (min-width: 500px) {
-        padding-left: 1em;
-        padding-right: 1em;
-        width: 120px;
-      }
-      @media (min-width: 768px) {
-        width: auto;
-      }
     }
 
     &.deserved {
-      width: 110px;
       transform: translateX(calc(-50% + 24px));
 
       &::after {
         transform: translateX(calc(-50% - 24px));
-      }
-
-      @media (min-width: 500px) {
-        width: auto;
-        min-width: 145px;
       }
 
       @media (min-width: 768px) {
