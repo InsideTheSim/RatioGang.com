@@ -166,7 +166,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars4x }})</span>
               </span>
-              <span class="leading-tight badge-label">Quad Pod</span>
+              <span class="leading-tight badge-label">The Quad Pod</span>
               <span class="text-2xl leading-none mt-2">🐬🐬<br>🐬🐬</span>
             </span>
           </transition>
