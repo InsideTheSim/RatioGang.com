@@ -90,7 +90,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ deservedDollars }})</span>
               </span>
-              <span class="leading-tight badge-label">Flippty Percent</span>
+              <span class="leading-tight badge-label">Flippty&nbsp;Percent</span>
               <span class="text-3xl leading-none mt-2 font-normal">🦐</span>
             </span>
           </transition>
@@ -109,7 +109,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars }})</span>
               </span>
-              <span class="leading-tight badge-label">The Flippening</span>
+              <span class="leading-tight badge-label">The&nbsp;Flippening</span>
               <span class="text-3xl leading-none mt-2">🐬</span>
             </span>
           </transition>
@@ -128,7 +128,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars2x }})</span>
               </span>
-              <span class="leading-tight badge-label">The Double Dolph</span>
+              <span class="leading-tight badge-label">The Double&nbsp;Dolph</span>
               <span class="text-3xl leading-none mt-2">🐬🐬</span>
             </span>
           </transition>
@@ -147,7 +147,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars3x }})</span>
               </span>
-              <span class="leading-tight badge-label">The Trip Flip</span>
+              <span class="leading-tight badge-label">The Trip&nbsp;Flip</span>
               <span class="text-2xl leading-none mt-2">🐬🐬🐬</span>
             </span>
           </transition>
@@ -166,7 +166,7 @@
               <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
                 <span class="monospace">({{ targetDollars4x }})</span>
               </span>
-              <span class="leading-tight badge-label">The Quad Pod</span>
+              <span class="leading-tight badge-label">The Quad&nbsp;Pod</span>
               <span class="text-2xl leading-none mt-2">🐬🐬<br>🐬🐬</span>
             </span>
           </transition>
@@ -696,7 +696,7 @@ export default {
     }
 
     &.deserved {
-      width: 100px;
+      width: 110px;
       transform: translateX(calc(-50% + 24px));
 
       &::after {
