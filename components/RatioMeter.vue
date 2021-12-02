@@ -320,6 +320,37 @@ export default {
   watch: {
     calculatedDollars () {
       this.updateTitle()
+    },
+    confetti (value) {
+      if (value && !this.activeConfetti) {
+        this.activeConfetti = true
+        this.$confetti.start({
+          defaultType: 'image',
+          defaultSize: 8,
+          defaultDropRate: 8,
+          dropRate: 8,
+          particlesPerFrame: 1,
+          particles: [
+            {
+              size: 5,
+              type: 'circle',
+              colors: ['Crimson', 'Gold']
+            },
+            {
+              size: 32,
+              type: 'image',
+              url: '/burn-flip.png'
+            }
+          ]
+        })
+
+        setTimeout(() => {
+          this.activeConfetti = false
+          this.$store.commit('system/setConfetti', false)
+        }, 5000)
+      } else {
+        this.$confetti.stop()
+      }
     }
     // ratio () {
     //   if ((this.ratio >= this.deserved) && !this.activeConfetti) {

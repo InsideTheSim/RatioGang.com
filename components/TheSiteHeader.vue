@@ -3,6 +3,7 @@
     <div class="logo-container">
       <h1 class="text-3xl md:text-4xl text-center font-black text-gray-800 dark:text-gray-300">
         <span class="font-normal">💪</span> RatioGang <span class="font-normal">{{ (ratio >= deserved && 0.085 > ratio) ? '🔥' : '📈' }}</span>
+        <span class="font-normal">💪</span>&nbsp;RatioGang&nbsp;<span class="font-normal cursor-pointer" @click="handleEmojiClick">{{ showFire ? '🔥' : '📈' }}</span>
       </h1>
       <div class="text-center text-gray-700 text-sm md:text-md dark:text-gray-400">
         <p v-if="!ratio || ratio < 0.0425">
@@ -108,6 +109,13 @@ export default {
         if (!this.selectedCurrency || this.selectedCurrency.id !== this.userSelectedCurrency.id) {
           this.selectedCurrency = this.userSelectedCurrency
         }
+      }
+    }
+  },
+  methods: {
+    handleEmojiClick () {
+      if (this.showFire) {
+        this.$store.commit('system/setConfetti', true)
       }
     }
   }
