@@ -1,11 +1,13 @@
 <template>
-  <div class="the-site-header container flex flex-col xs:flex-row items-center justify-center pb-2 pt-4 md:pt-8 px-2">
+  <div class="the-site-header mx-auto flex flex-col xs:flex-row items-center justify-center pb-2 pt-4 md:pt-8 px-2">
     <div class="logo-container">
       <h1 class="text-3xl md:text-4xl text-center font-black text-gray-800 dark:text-gray-300">
-        <span class="font-normal">💪</span> RatioGang <span class="font-normal">{{ (ratio >= deserved && 0.085 > ratio) ? '🔥' : '📈' }}</span>
         <span class="font-normal">💪</span>&nbsp;RatioGang&nbsp;<span class="font-normal cursor-pointer" @click="handleEmojiClick">{{ showFire ? '🔥' : '📈' }}</span>
       </h1>
-      <div class="text-center text-gray-700 text-sm md:text-md dark:text-gray-400">
+      <div
+        v-show="showTagline && ratio"
+        class="text-center text-gray-700 text-sm md:text-md dark:text-gray-400"
+      >
         <p v-if="!ratio || ratio < 0.0425">
           Because seriously, what the fuck you guys.
         </p>
@@ -19,7 +21,7 @@
           Mom! Get the camera!
         </p>
         <p v-else-if="ratio < 0.085">
-          Second half quicker than first half. Bet.
+          {{ confetti ? 'EIP-1559 sends its regards.' : 'Second half quicker than first half. Bet.' }}
         </p>
         <p v-else-if="ratio < 0.1">
           Approaching market rationality.
@@ -27,10 +29,13 @@
         <p v-else-if="ratio < 0.145">
           Oh Lawd, he coming!
         </p>
-        <p v-else-if="ratio < (flippening + 0.01)">
+        <p v-else-if="ratio < flippening">
           *Excited dolphin noises*
         </p>
-        <p v-else-if="ratio < (flippening + 0.02)">
+        <p v-else-if="ratio < (flippening + 0.01)">
+          FLIP! FLIP! FILPADELPHIA!
+        </p>
+        <p v-else-if="ratio < (flippening + 0.03)">
           Abandon <em>this</em>, bro.
         </p>
         <p v-else>
@@ -89,8 +94,17 @@ export default {
       userSelectedCurrency: 'markets/userSelectedCurrency',
       ratio: 'markets/ratio',
       deserved: 'markets/deserved',
-      flippening: 'markets/flippening'
-    })
+      flippening: 'markets/flippening',
+      confetti: 'system/confetti',
+      wsPriceFeed: 'system/webSocketPriceFeed',
+      fallbackPriceFeed: 'system/fallbackPriceFeed'
+    }),
+    showTagline () {
+      return this.wsPriceFeed || this.fallbackPriceFeed
+    },
+    showFire () {
+      return (this.ratio >= this.deserved && this.ratio < 0.085)
+    }
   },
   watch: {
     selectedCurrency: {

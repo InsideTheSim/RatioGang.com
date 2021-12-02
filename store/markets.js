@@ -5,8 +5,7 @@ import { formatPrice } from '~/libs/utils'
 const state = () => ({
   coinGecko: false,
   prices: {},
-  userSelectedCurrency: false,
-  webSocketPriceFeed: false
+  userSelectedCurrency: false
 })
 
 /**
@@ -17,9 +16,6 @@ const state = () => ({
 const getters = {
   coinGecko (state) {
     return state.coinGecko
-  },
-  webSocketPriceFeed (state) {
-    return state.webSocketPriceFeed
   },
   prices (state) {
     if (state.prices.eth && state.prices.btc) {
@@ -186,7 +182,6 @@ const actions = {
       maxAge: 60 * 60 * 24 * 365
     })
     commit('setUserSelectedCurrency', data)
-    dispatch('fetchCoinGecko', cookies)
   }
 }
 
@@ -220,9 +215,6 @@ const mutations = {
   },
   setUserSelectedCurrency (state, payload) {
     state.userSelectedCurrency = payload
-  },
-  setWebSocketPriceFeed (state, payload) {
-    state.webSocketPriceFeed = payload
   }
 }
 

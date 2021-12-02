@@ -1,6 +1,6 @@
 <template>
   <div
-    v-show="coinGecko"
+    v-show="displayMeter"
     v-observe.once.-100px="setAnimate"
     :data-animate="animate"
     :data-drag="useDragProgress"
@@ -237,8 +237,14 @@ export default {
       targetDollars: 'markets/targetDollars',
       targetDollars2x: 'markets/targetDollars2x',
       targetDollars3x: 'markets/targetDollars3x',
-      targetDollars4x: 'markets/targetDollars4x'
+      targetDollars4x: 'markets/targetDollars4x',
+      confetti: 'system/confetti',
+      wsPriceFeed: 'system/webSocketPriceFeed',
+      fallbackPriceFeed: 'system/fallbackPriceFeed'
     }),
+    displayMeter () {
+      return this.wsPriceFeed || this.fallbackPriceFeed
+    },
     calculatedPercent () {
       return this.useDragProgress ? this.dragWidthPercent : this.progressPercent
     },
@@ -352,45 +358,8 @@ export default {
         this.$confetti.stop()
       }
     }
-    // ratio () {
-    //   if ((this.ratio >= this.deserved) && !this.activeConfetti) {
-    //     this.$confetti.start({
-    //       defaultType: 'image',
-    //       defaultSize: 8,
-    //       defaultDropRate: 8,
-    //       dropRate: 8,
-    //       particlesPerFrame: 1,
-    //       particles: [
-    //         {
-    //           size: 5,
-    //           type: 'circle',
-    //           colors: ['Crimson', 'Gold']
-    //         },
-    //         {
-    //           size: 32,
-    //           type: 'image',
-    //           url: '/burn-flip.png'
-    //         }
-    //       ]
-    //     })
-    //     this.activeConfetti = true
-
-    //     setTimeout(() => {
-    //       this.$confetti.stop()
-    //     }, 8000)
-    //   }
-    // }
   },
-  async mounted () {
-    this.restoreUserPreferredCurrency()
-    if (!this.coinGecko) {
-      await this.fetchCoinGecko()
-    }
-    setInterval(async () => {
-      await this.fetchCoinGecko()
-    }, 60 * 1000)
-    this.updateTitle()
-
+  mounted () {
     this.dragWidthPercent = this.progressPercent
 
     if (this.$route.query.max) {
@@ -409,12 +378,6 @@ export default {
   },
   methods: {
     formatPrice,
-    async restoreUserPreferredCurrency () {
-      await this.$store.dispatch('markets/restoreUserPreferredCurrency', this.$cookies)
-    },
-    async fetchCoinGecko () {
-      await this.$store.dispatch('markets/fetchCoinGecko', this.$cookies)
-    },
     updateTitle () {
       if (process.client && this.ratio && this.eth) {
         const price = this.formatPrice(

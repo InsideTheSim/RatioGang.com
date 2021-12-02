@@ -26,13 +26,17 @@ import { throttle } from '~/libs/utils'
 export default {
   data () {
     return {
-      prices: false,
-      coinbaseWSS: false
+      coinbaseWSS: false,
+      createPriceFeedInterval: false,
+      attemptedCoinbaseConnection: 0,
+      coinbaseMessageCount: 0
     }
   },
   computed: {
     ...mapGetters({
-      userSelectedCurrency: 'markets/userSelectedCurrency'
+      userSelectedCurrency: 'markets/userSelectedCurrency',
+      wsPriceFeed: 'system/webSocketPriceFeed',
+      fallbackPriceFeed: 'system/fallbackPriceFeed'
     })
   },
   watch: {
@@ -48,10 +52,22 @@ export default {
     }
   },
   mounted () {
+    this.createPriceFeedInterval = setInterval(() => {
+      if (!this.coinbaseWSS && this.attemptedCoinbaseConnection < 12 && !this.fallbackPriceFeed) {
+        this.$store.commit('system/setFallbackPriceFeed', true)
+        this.setupCoinGecko()
+        this.createPriceFeed()
+      } else {
+        clearInterval(this.createPriceFeedInterval)
+      }
+    }, 4000)
+
     this.createPriceFeed()
   },
   methods: {
     createPriceFeed () {
+      this.attemptedCoinbaseConnection = this.attemptedCoinbaseConnection + 1
+
       if (
         !this.coinbaseWSS &&
         this.userSelectedCurrency &&
@@ -59,7 +75,7 @@ export default {
       ) {
         this.coinbaseWSS = new WebSocket('wss://ws-feed.pro.coinbase.com')
         this.coinbaseWSS.onopen = () => {
-          this.$store.commit('markets/setWebSocketPriceFeed', true)
+          // request coinbase feeds
           this.coinbaseWSS.send(JSON.stringify(
             {
               type: 'subscribe',
@@ -73,6 +89,27 @@ export default {
             }
           ))
         }
+        this.coinbaseWSS.onmessage = (msg) => {
+          const data = JSON.parse(msg.data)
+          if (data.type === 'ticker') {
+            this.handleCoinbaseConnected()
+            this.$store.commit('markets/setPrices', data)
+          }
+        }
+      }
+    },
+    handleCoinbaseConnected () {
+      this.coinbaseMessageCount++
+      if (!this.wsPriceFeed && this.createPriceFeedInterval) {
+        clearInterval(this.createPriceFeedInterval)
+      }
+      // collect enough messages to get good starting data
+      if (this.coinbaseMessageCount === 8) {
+        // set up coingecko for extra data
+        this.setupCoinGecko()
+        this.$store.commit('system/setWebSocketPriceFeed', true)
+
+        // replace onmessage with slower throttle
         this.coinbaseWSS.onmessage = throttle(
           (msg) => {
             const data = JSON.parse(msg.data)
@@ -83,6 +120,21 @@ export default {
           1000
         )
       }
+    },
+    async fetchCoinGecko () {
+      await this.$store.dispatch('markets/fetchCoinGecko', this.$cookies)
+    },
+    async setupCoinGecko () {
+      this.restoreUserPreferredCurrency()
+      if (!this.coinGecko) {
+        await this.fetchCoinGecko()
+      }
+      setInterval(async () => {
+        await this.fetchCoinGecko()
+      }, 60 * 1000)
+    },
+    async restoreUserPreferredCurrency () {
+      await this.$store.dispatch('markets/restoreUserPreferredCurrency', this.$cookies)
     }
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <div
+    v-show="showFeed"
     :key="updateTime"
     v-observe.once.-100px="setAnimate"
     class="price-stats pb-1 flex flex-wrap align-top justify-center text-center text-gray-600 dark:text-gray-500 leading-tight"
@@ -50,8 +51,13 @@ export default {
       btc: 'markets/btc',
       ratio: 'markets/ratio',
       eth24hPercentChange: 'markets/eth24hPercentChange',
-      btc24hPercentChange: 'markets/btc24hPercentChange'
+      btc24hPercentChange: 'markets/btc24hPercentChange',
+      wsPriceFeed: 'system/webSocketPriceFeed',
+      fallbackPriceFeed: 'system/fallbackPriceFeed'
     }),
+    showFeed () {
+      return this.wsPriceFeed || this.fallbackPriceFeed
+    },
     ratioChange24h () {
       if (this.eth && this.btc && this.ratio) {
         const oldEthPrice = parseFloat(this.eth.current_price) + parseFloat(this.eth.price_change_24h)
