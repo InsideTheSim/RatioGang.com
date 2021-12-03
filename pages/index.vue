@@ -3,8 +3,22 @@
     <div class="container">
       <RatioMeter />
     </div>
-    <div class="mb-8">
+    <div
+      v-if="showDonationBanner"
+      class="mb-8"
+    >
       <div class="container pt-24 pb-8">
+        <GitCoinGrants />
+      </div>
+    </div>
+    <div class="mb-8">
+      <div
+        :class="{
+          container: true,
+          'pb-8': true,
+          'pt-24': !showDonationBanner
+        }"
+      >
         <EthStats />
       </div>
     </div>
@@ -36,7 +50,8 @@ export default {
     ...mapGetters({
       userSelectedCurrency: 'markets/userSelectedCurrency',
       wsPriceFeed: 'system/webSocketPriceFeed',
-      fallbackPriceFeed: 'system/fallbackPriceFeed'
+      fallbackPriceFeed: 'system/fallbackPriceFeed',
+      showDonationBanner: 'system/showDonationBanner'
     })
   },
   watch: {
@@ -51,7 +66,14 @@ export default {
       }
     }
   },
-  mounted () {
+  async mounted () {
+    if (this.$cookies) {
+      const hideBanner = await this.$cookies.get('ratiogang-hide-banner')
+      if (hideBanner) {
+        this.$store.dispatch('system/hideDonationBanner', this.$cookies)
+      }
+    }
+
     this.createPriceFeedInterval = setInterval(() => {
       if (!this.coinbaseWSS && this.attemptedCoinbaseConnection < 12 && !this.fallbackPriceFeed) {
         this.$store.commit('system/setFallbackPriceFeed', true)

@@ -1,7 +1,8 @@
 const state = () => ({
   confetti: false,
   fallbackPriceFeed: false,
-  webSocketPriceFeed: false
+  webSocketPriceFeed: false,
+  showDonationBanner: true
 })
 
 /**
@@ -18,6 +19,9 @@ const getters = {
   },
   webSocketPriceFeed (state) {
     return state.webSocketPriceFeed
+  },
+  showDonationBanner (state) {
+    return state.showDonationBanner
   }
 }
 
@@ -27,6 +31,13 @@ const getters = {
  * @type {Object}
  */
 const actions = {
+  hideDonationBanner ({ commit }, cookies) {
+    cookies.set('ratiogang-hide-banner', true, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365
+    })
+    commit('setShowDonationBanner', false)
+  }
 }
 
 /**
@@ -43,6 +54,9 @@ const mutations = {
   },
   setWebSocketPriceFeed (state, payload) {
     state.webSocketPriceFeed = payload
+  },
+  setShowDonationBanner (state, payload) {
+    state.showDonationBanner = payload
   }
 }
 

@@ -565,11 +565,15 @@ export default {
     &.badge {
       @apply bg-blue-100;
       @apply dark:bg-gray-700;
-      border: 1px solid rgb(31, 41, 55);
+      border: 1px solid rgb(201, 216, 238);
       border-radius: 5px;
       display: block;
       padding: 0.5em;
       width: 110px;
+
+      .dark & {
+        border: 1px solid rgb(31, 41, 55);
+      }
 
       &[data-passed="true"] {
         @apply bg-green-200;
