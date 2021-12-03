@@ -2,7 +2,7 @@
   <div class="gitcoin-grants-alert text-gray-600 dark:text-gray-500">
     <div class="message">
       <span class="headline text-center font-black text-gray-800 dark:text-gray-300">
-        <span class="font-normal">💪</span>RatioGang<span class="font-normal">📈</span> is a qualifying project in the current GR12 round of Gitcoin Grants.<br>
+        <span class="font-normal">💪</span>RatioGang<span class="font-normal">📈</span> is a participating project in the current GR12 round of Gitcoin Grants.<br>
         <small>Dec 1st - Dec 16th</small>
       </span>
       <span class="copy">
