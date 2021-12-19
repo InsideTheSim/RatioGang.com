@@ -2,7 +2,7 @@ const state = () => ({
   confetti: false,
   fallbackPriceFeed: false,
   webSocketPriceFeed: false,
-  showDonationBanner: true
+  showDonationBanner: false
 })
 
 /**
