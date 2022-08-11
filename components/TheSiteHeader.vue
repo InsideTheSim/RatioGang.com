@@ -1,67 +1,49 @@
 <template>
-  <div class="the-site-header mx-auto flex flex-col xs:flex-row items-center justify-center pb-2 pt-4 md:pt-8 px-2">
+  <div
+    class="the-site-header mx-auto flex flex-col xs:flex-row items-center justify-center pb-2 pt-4 md:pt-8 px-2"
+  >
     <div class="logo-container">
-      <h1 class="text-3xl md:text-4xl text-center font-black text-gray-800 dark:text-gray-300">
-        <span class="font-normal">💪</span>&nbsp;RatioGang&nbsp;<span class="font-normal cursor-pointer" @click="handleEmojiClick">{{ showFire ? '🔥' : '📈' }}</span>
+      <h1
+        class="text-3xl md:text-4xl text-center font-black text-gray-800 dark:text-gray-300"
+      >
+        <span class="font-normal">💪</span>&nbsp;RatioGang&nbsp;<span class="font-normal cursor-pointer">📈</span>
       </h1>
       <div
         v-show="showTagline && ratio"
         class="text-center text-gray-700 text-sm md:text-md dark:text-gray-400"
       >
-        <p v-if="!ratio || ratio < 0.0425">
-          Because seriously, what the fuck you guys.
-        </p>
-        <p v-else-if="ratio < 0.069">
-          In retrospect, it was inevitable.
-        </p>
-        <p v-else-if="ratio < 0.07">
-          Nice.
-        </p>
-        <p v-else-if="ratio < deserved">
-          Mom! Get the camera!
-        </p>
-        <p v-else-if="ratio < 0.085">
-          {{ confetti ? 'EIP-1559 sends its regards.' : 'Second half quicker than first half. Bet.' }}
-        </p>
-        <p v-else-if="ratio < 0.1">
-          Approaching market rationality.
-        </p>
-        <p v-else-if="ratio < 0.145">
-          Oh Lawd, he coming!
-        </p>
-        <p v-else-if="ratio < flippening">
-          *Excited dolphin noises*
-        </p>
-        <p v-else-if="ratio < (flippening + 0.01)">
-          FLIP! FLIP! FILPADELPHIA!
-        </p>
-        <p v-else-if="ratio < (flippening + 0.03)">
-          Abandon <em>this</em>, bro.
-        </p>
-        <p v-else>
-          We tried to tell you.
-        </p>
+        <p v-if="!ratio || ratio < 0.0425">Because seriously, what the fuck you guys.</p>
+        <p v-else-if="ratio < 0.069">In retrospect, it was inevitable.</p>
+        <p v-else-if="ratio < 0.07">Nice.</p>
+        <p v-else-if="ratio < deserved">Mom! Get the camera!</p>
+        <p v-else-if="ratio < 0.0825">Urge to Merge, baby!</p>
+        <p v-else-if="ratio < 0.1">Approaching market rationality.</p>
+        <p v-else-if="ratio < 0.145">Oh Lawd, he coming!</p>
+        <p v-else-if="ratio < flippening">*Excited dolphin noises*</p>
+        <p v-else-if="ratio < flippening + 0.01">FLIP! FLIP! FILPADELPHIA!</p>
+        <p v-else-if="ratio < flippening + 0.03">Abandon <em>this</em>, Zhu.</p>
+        <p v-else>We tried to tell you.</p>
       </div>
     </div>
     <div class="site-options flex-shrink-0 flex-grow ml-2 sm:ml-3 md:ml-8">
       <vSelect
         key="theme"
         v-model="$colorMode.preference"
-        :reduce="option => option.id"
+        :reduce="(option) => option.id"
         :searchable="false"
         :options="[
           {
             id: 'system',
-            label: '🌗 Auto'
+            label: '🌗 Auto',
           },
           {
             id: 'light',
-            label: '☀️ Light'
+            label: '☀️ Light',
           },
           {
             id: 'dark',
-            label: '🌙 Dark'
-          }
+            label: '🌙 Dark',
+          },
         ]"
         :clearable="false"
         :filterable="false"
@@ -103,7 +85,7 @@ export default {
       return this.wsPriceFeed || this.fallbackPriceFeed
     },
     showFire () {
-      return (this.ratio >= this.deserved && this.ratio < 0.085)
+      return this.ratio >= this.deserved && this.ratio < 0.085
     }
   },
   watch: {
@@ -120,7 +102,10 @@ export default {
     userSelectedCurrency: {
       immediate: true,
       handler () {
-        if (!this.selectedCurrency || this.selectedCurrency.id !== this.userSelectedCurrency.id) {
+        if (
+          !this.selectedCurrency ||
+          this.selectedCurrency.id !== this.userSelectedCurrency.id
+        ) {
           this.selectedCurrency = this.userSelectedCurrency
         }
       }

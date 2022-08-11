@@ -219,7 +219,8 @@ export default {
       dragWidthPercent: 0,
       adjustingRatio: false,
       deathOfEth: 0.03,
-      activeConfetti: false
+      activeConfetti: false,
+      confettiHasFired: false
     }
   },
   computed: {
@@ -327,25 +328,30 @@ export default {
     calculatedDollars () {
       this.updateTitle()
     },
-    confetti (value) {
-      if (value && !this.activeConfetti) {
+    ratio () {
+      if ((this.ratio >= this.deserved && this.ratio < 0.0825) && !this.activeConfetti && !this.confettiHasFired) {
         this.activeConfetti = true
+        this.confettiHasFired = true
         this.$confetti.start({
           defaultType: 'image',
           defaultSize: 8,
           defaultDropRate: 8,
-          dropRate: 8,
           particlesPerFrame: 1,
           particles: [
             {
-              size: 5,
-              type: 'circle',
-              colors: ['Crimson', 'Gold']
+              size: 4,
+              dropRate: 7,
+              type: 'circle'
             },
             {
-              size: 32,
-              type: 'image',
-              url: '/burn-flip.png'
+              size: 8,
+              dropRate: 8,
+              type: 'rect'
+            },
+            {
+              size: 16,
+              dropRate: 9,
+              type: 'rect'
             }
           ]
         })
@@ -353,9 +359,8 @@ export default {
         setTimeout(() => {
           this.activeConfetti = false
           this.$store.commit('system/setConfetti', false)
-        }, 5000)
-      } else {
-        this.$confetti.stop()
+          this.$confetti.stop()
+        }, 15000)
       }
     }
   },

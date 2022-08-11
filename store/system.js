@@ -1,5 +1,5 @@
 const state = () => ({
-  confetti: false,
+  confetti: true,
   fallbackPriceFeed: false,
   webSocketPriceFeed: false,
   showDonationBanner: false
