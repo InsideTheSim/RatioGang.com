@@ -6,7 +6,7 @@
       <h1
         class="text-3xl md:text-4xl text-center font-black text-gray-800 dark:text-gray-300"
       >
-        <span class="font-normal">💪</span>&nbsp;RatioGang&nbsp;<span class="font-normal cursor-pointer">📈</span>
+        <span class="font-normal">🔵</span>&nbsp;DXInvestorDash&nbsp;<span class="font-normal cursor-pointer">🔵</span>
       </h1>
       <div
         v-show="showTagline && ratio"
