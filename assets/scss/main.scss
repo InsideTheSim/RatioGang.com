@@ -1,5 +1,15 @@
 @import "vue-select/src/scss/vue-select.scss";
 
+html {
+  @apply bg-blue-50;
+  scrollbar-gutter: stable;
+
+  // @apply dark:bg-gray-800 doesn't seem to work directly on the html element
+  &.dark {
+    @apply bg-gray-800;
+  }
+}
+
 .container {
   @apply max-w-screen-xl;
   @apply m-auto;
