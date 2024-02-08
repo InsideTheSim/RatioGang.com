@@ -25,7 +25,7 @@
         <p v-else>We tried to tell you.</p>
       </div>
     </div>
-    <div class="site-options flex-shrink-0 flex-grow ml-2 sm:ml-3 md:ml-8">
+    <div class="site-options flex-shrink-0 flex-grow ml-2 sm:ml-3 md:ml-8 dark:[&_span]:text-gray-300 dark:[&>div]:border dark:[&>div]:border-gray-500 dark:[&>div]:rounded">
       <vSelect
         key="theme"
         v-model="$colorMode.preference"
