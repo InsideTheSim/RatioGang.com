@@ -45,12 +45,7 @@
             >
               Reset Meter
             </span>
-            <span
-              v-else
-              class="badge-label"
-            >
-              We’re here.
-            </span>
+            <span v-else class="badge-label"> We’re here. </span>
           </span>
           <transition name="fade">
             <span
@@ -64,11 +59,17 @@
               <span class="number">
                 {{ deathOfEth }}
               </span>
-              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+              <span
+                class="font-normal text-xs text-gray-700 dark:text-gray-400"
+              >
                 <span class="monospace">({{ deathOfEthDollars }})</span>
               </span>
               <span class="leading-tight">
-                <a href="https://twitter.com/LUKACACIC/status/1377371626656952326" target="_blank" rel="noopener">
+                <a
+                  href="https://twitter.com/LUKACACIC/status/1377371626656952326"
+                  target="_blank"
+                  rel="noopener"
+                >
                   Death of ETH&nbsp;Party
                 </a>
               </span>
@@ -87,10 +88,14 @@
               <span class="number">
                 {{ deserved }}
               </span>
-              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+              <span
+                class="font-normal text-xs text-gray-700 dark:text-gray-400"
+              >
                 <span class="monospace">({{ deservedDollars }})</span>
               </span>
-              <span class="leading-tight tracking-tight badge-label">Flippty&nbsp;Percent</span>
+              <span class="leading-tight tracking-tight badge-label"
+                >Flippty&nbsp;Percent</span
+              >
               <span class="text-3xl leading-none mt-2 font-normal">🦐</span>
             </span>
           </transition>
@@ -106,10 +111,14 @@
               <span class="number">
                 {{ flippening }}
               </span>
-              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+              <span
+                class="font-normal text-xs text-gray-700 dark:text-gray-400"
+              >
                 <span class="monospace">({{ targetDollars }})</span>
               </span>
-              <span class="leading-tight tracking-tight badge-label">The&nbsp;Flippening</span>
+              <span class="leading-tight tracking-tight badge-label"
+                >The&nbsp;Flippening</span
+              >
               <span class="text-3xl leading-none mt-2">🐬</span>
             </span>
           </transition>
@@ -125,10 +134,14 @@
               <span class="number">
                 {{ (flippening * 2).toFixed(5) }}
               </span>
-              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+              <span
+                class="font-normal text-xs text-gray-700 dark:text-gray-400"
+              >
                 <span class="monospace">({{ targetDollars2x }})</span>
               </span>
-              <span class="leading-tight tracking-tight badge-label">The Double&nbsp;Dolph</span>
+              <span class="leading-tight tracking-tight badge-label"
+                >The Double&nbsp;Dolph</span
+              >
               <span class="text-3xl leading-none mt-2">🐬🐬</span>
             </span>
           </transition>
@@ -144,10 +157,14 @@
               <span class="number">
                 {{ (flippening * 3).toFixed(5) }}
               </span>
-              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+              <span
+                class="font-normal text-xs text-gray-700 dark:text-gray-400"
+              >
                 <span class="monospace">({{ targetDollars3x }})</span>
               </span>
-              <span class="leading-tight tracking-tight badge-label">The Trip&nbsp;Flip</span>
+              <span class="leading-tight tracking-tight badge-label"
+                >The Trip&nbsp;Flip</span
+              >
               <span class="text-2xl leading-none mt-2">🐬🐬🐬</span>
             </span>
           </transition>
@@ -163,11 +180,15 @@
               <span class="number">
                 {{ (flippening * 4).toFixed(5) }}
               </span>
-              <span class="font-normal text-xs text-gray-700 dark:text-gray-400">
+              <span
+                class="font-normal text-xs text-gray-700 dark:text-gray-400"
+              >
                 <span class="monospace">({{ targetDollars4x }})</span>
               </span>
-              <span class="leading-tight tracking-tight badge-label">The Quad&nbsp;Pod</span>
-              <span class="text-2xl leading-none mt-2">🐬🐬<br>🐬🐬</span>
+              <span class="leading-tight tracking-tight badge-label"
+                >The Quad&nbsp;Pod</span
+              >
+              <span class="text-2xl leading-none mt-2">🐬🐬<br />🐬🐬</span>
             </span>
           </transition>
           <span class="maximum text-gray-700 dark:text-gray-500">
@@ -202,11 +223,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { formatPrice } from '~/libs/utils'
+import { mapGetters } from 'vuex';
+import { formatPrice } from '~/libs/utils';
 
 export default {
-  data () {
+  data() {
     return {
       animate: 'none',
       interactive: false,
@@ -220,8 +241,8 @@ export default {
       adjustingRatio: false,
       deathOfEth: 0.03,
       activeConfetti: false,
-      confettiHasFired: false
-    }
+      confettiHasFired: false,
+    };
   },
   computed: {
     ...mapGetters({
@@ -241,97 +262,104 @@ export default {
       targetDollars4x: 'markets/targetDollars4x',
       confetti: 'system/confetti',
       wsPriceFeed: 'system/webSocketPriceFeed',
-      fallbackPriceFeed: 'system/fallbackPriceFeed'
+      fallbackPriceFeed: 'system/fallbackPriceFeed',
     }),
-    displayMeter () {
-      return this.wsPriceFeed || this.fallbackPriceFeed
+    displayMeter() {
+      return this.wsPriceFeed || this.fallbackPriceFeed;
     },
-    calculatedPercent () {
-      return this.useDragProgress ? this.dragWidthPercent : this.progressPercent
+    calculatedPercent() {
+      return this.useDragProgress
+        ? this.dragWidthPercent
+        : this.progressPercent;
     },
-    calculatedRatioPercent () {
+    calculatedRatioPercent() {
       if (this.useDragProgress) {
-        return ((this.dragWidthPercent / this.targetPercent) * 100).toFixed(2)
+        return ((this.dragWidthPercent / this.targetPercent) * 100).toFixed(2);
       }
-      return this.ratioPercent
+      return this.ratioPercent;
     },
-    progressPercent () {
+    progressPercent() {
       if (this.ratio) {
-        return (this.ratio / this.max) * 100
+        return (this.ratio / this.max) * 100;
       }
-      return 0
+      return 0;
     },
-    deservedPercent () {
+    deservedPercent() {
       if (this.max) {
-        return (this.deserved / this.max) * 100
+        return (this.deserved / this.max) * 100;
       }
-      return 0
+      return 0;
     },
-    deathOfEthPercent () {
+    deathOfEthPercent() {
       if (this.max) {
-        return (this.deathOfEth / this.max) * 100
+        return (this.deathOfEth / this.max) * 100;
       }
-      return 0
+      return 0;
     },
-    deathOfEthDollars () {
+    deathOfEthDollars() {
       if (this.eth) {
         return formatPrice(
-          ((this.deathOfEth / this.ratio) * this.eth.current_price),
+          (this.deathOfEth / this.ratio) * this.eth.current_price,
           this.userSelectedCurrency.format,
           this.userSelectedCurrency.id
-        )
+        );
       }
-      return 0
+      return 0;
     },
-    targetPercent () {
+    targetPercent() {
       if (this.flippening) {
-        return (this.flippening / this.max) * 100
+        return (this.flippening / this.max) * 100;
       }
-      return 0
+      return 0;
     },
-    targetPercent2x () {
+    targetPercent2x() {
       if (this.flippening) {
-        return ((this.flippening * 2) / this.max) * 100
+        return ((this.flippening * 2) / this.max) * 100;
       }
-      return 0
+      return 0;
     },
-    targetPercent3x () {
+    targetPercent3x() {
       if (this.flippening) {
-        return ((this.flippening * 3) / this.max) * 100
+        return ((this.flippening * 3) / this.max) * 100;
       }
-      return 0
+      return 0;
     },
-    targetPercent4x () {
+    targetPercent4x() {
       if (this.flippening) {
-        return ((this.flippening * 4) / this.max) * 100
+        return ((this.flippening * 4) / this.max) * 100;
       }
-      return 0
+      return 0;
     },
-    calculatedRatio () {
+    calculatedRatio() {
       if (this.useDragProgress) {
-        return ((this.dragWidthPercent * this.max) / 100).toFixed(6)
+        return ((this.dragWidthPercent * this.max) / 100).toFixed(6);
       }
-      return this.ratio
+      return this.ratio;
     },
-    calculatedDollars () {
+    calculatedDollars() {
       if (this.useDragProgress) {
         return this.formatPrice(
           ((this.dragWidthPercent * this.max) / 100) * this.btc.current_price,
           this.userSelectedCurrency.format,
           this.userSelectedCurrency.id
-        )
+        );
       }
-      return this.ratioDollars
-    }
+      return this.ratioDollars;
+    },
   },
   watch: {
-    calculatedDollars () {
-      this.updateTitle()
+    calculatedDollars() {
+      this.updateTitle();
     },
-    ratio () {
-      if ((this.ratio >= this.deserved && this.ratio < 0.0825) && !this.activeConfetti && !this.confettiHasFired) {
-        this.activeConfetti = true
-        this.confettiHasFired = true
+    ratio() {
+      if (
+        this.ratio >= this.deserved &&
+        this.ratio < 0.0825 &&
+        !this.activeConfetti &&
+        !this.confettiHasFired
+      ) {
+        this.activeConfetti = true;
+        this.confettiHasFired = true;
         this.$confetti.start({
           defaultType: 'image',
           defaultSize: 8,
@@ -341,196 +369,210 @@ export default {
             {
               size: 4,
               dropRate: 7,
-              type: 'circle'
+              type: 'circle',
             },
             {
               size: 8,
               dropRate: 8,
-              type: 'rect'
+              type: 'rect',
             },
             {
               size: 16,
               dropRate: 9,
-              type: 'rect'
-            }
-          ]
-        })
+              type: 'rect',
+            },
+          ],
+        });
 
         setTimeout(() => {
-          this.activeConfetti = false
-          this.$store.commit('system/setConfetti', false)
-          this.$confetti.stop()
-        }, 15000)
+          this.activeConfetti = false;
+          this.$store.commit('system/setConfetti', false);
+          this.$confetti.stop();
+        }, 15000);
       }
-    }
+    },
   },
-  mounted () {
-    this.dragWidthPercent = this.progressPercent
+  mounted() {
+    this.dragWidthPercent = this.progressPercent;
 
     if (this.$route.query.max) {
-      const paramMax = Math.max(0, Math.min(1, parseFloat(this.$route.query.max))).toFixed(1)
-      this.max = parseFloat(paramMax)
+      const paramMax = Math.max(
+        0,
+        Math.min(1, parseFloat(this.$route.query.max))
+      ).toFixed(1);
+      this.max = parseFloat(paramMax);
     }
     if (this.$route.query.ratio) {
-      const paramRatio = Math.max(0, Math.min(this.max, parseFloat(this.$route.query.ratio))).toFixed(6)
-      this.dragWidthPercent = (paramRatio / this.max) * 100
-      this.useDragProgress = true
+      const paramRatio = Math.max(
+        0,
+        Math.min(this.max, parseFloat(this.$route.query.ratio))
+      ).toFixed(6);
+      this.dragWidthPercent = (paramRatio / this.max) * 100;
+      this.useDragProgress = true;
     }
 
     setTimeout(() => {
-      this.interactive = true
-    }, 1000)
+      this.interactive = true;
+    }, 1000);
   },
   methods: {
     formatPrice,
-    updateTitle () {
+    updateTitle() {
       if (process.client && this.ratio && this.eth) {
         const price = this.formatPrice(
           this.eth.current_price,
           this.userSelectedCurrency.format,
           this.userSelectedCurrency.id
-        )
-        const title = this.$nuxt.context.env.head.title
-        document.title = `(${this.ratio}) ${price} - ${title}`
+        );
+        const title = this.$nuxt.context.env.head.title;
+        document.title = `(${this.ratio}) ${price} - ${title}`;
       }
     },
-    setAnimate () {
-      this.animate = true
+    setAnimate() {
+      this.animate = true;
     },
-    mousedownHandler (e) {
+    mousedownHandler(e) {
       if (e.which === 1 || e.type === 'touchstart') {
-        this.isMouseDownOnBall = true
-        this.useDragProgress = true
+        this.isMouseDownOnBall = true;
+        this.useDragProgress = true;
       }
     },
-    mousemoveHandler (e) {
-      const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX
+    mousemoveHandler(e) {
+      const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
       if (this.isMouseDownOnBall && this.useDragProgress) {
-        const decimal =
-          (clientX - this.$el.offsetLeft) / this.$el.clientWidth
-        const percent = decimal * 100
+        const decimal = (clientX - this.$el.offsetLeft) / this.$el.clientWidth;
+        const percent = decimal * 100;
         if (percent > 100) {
-          this.dragWidthPercent = 100
+          this.dragWidthPercent = 100;
         } else if (percent < 0) {
-          this.dragWidthPercent = 0
+          this.dragWidthPercent = 0;
         } else {
-          this.dragWidthPercent = percent
+          this.dragWidthPercent = percent;
         }
       }
     },
-    mouseupHandler (e) {
+    mouseupHandler(e) {
       if (this.isMouseDownOnBall && this.useDragProgress) {
-        const clientX = e.type === 'touchend' ? false : e.clientX
+        const clientX = e.type === 'touchend' ? false : e.clientX;
         const decimal = clientX
           ? (clientX - this.$el.offsetLeft) / this.$el.clientWidth
-          : this.dragWidthPercent / 100
-        const percent = decimal * 100
-        this.dragWidthPercent = percent
-        this.isMouseDownOnBall = false
+          : this.dragWidthPercent / 100;
+        const percent = decimal * 100;
+        this.dragWidthPercent = percent;
+        this.isMouseDownOnBall = false;
         this.$router.replace({
           path: this.$route.path,
           query: {
             ...this.$route.query,
-            ratio: this.calculatedRatio
-          }
-        })
+            ratio: this.calculatedRatio,
+          },
+        });
       }
     },
-    mouseoverHandler (e) {
+    mouseoverHandler(e) {
       if (e.which === 0) {
-        this.isMouseDownOnBall = false
+        this.isMouseDownOnBall = false;
       }
     },
-    mouseoutHandler (e) {
+    mouseoutHandler(e) {
       if (e.which === 1 && this.useDragProgress) {
-        this.outProgressClientX = e.clientX
-        this.isMouseDownOnBody = true
-        this.bodyEventHandler()
+        this.outProgressClientX = e.clientX;
+        this.isMouseDownOnBody = true;
+        this.bodyEventHandler();
       }
     },
-    bodyEventHandler () {
-      const body = document.getElementsByTagName('body')[0]
-      body.addEventListener('mousemove', this.bodyMousemoveHandler)
+    bodyEventHandler() {
+      const body = document.getElementsByTagName('body')[0];
+      body.addEventListener('mousemove', this.bodyMousemoveHandler);
       body.addEventListener('mouseup', (e) => {
-        this.isMouseDownOnBall = false
-        this.isMouseDownOnBody = false
-        this.outProgressClientX = 0
-        body.removeEventListener('mousemove', this.bodyMousemoveHandler)
-      })
+        this.isMouseDownOnBall = false;
+        this.isMouseDownOnBody = false;
+        this.outProgressClientX = 0;
+        body.removeEventListener('mousemove', this.bodyMousemoveHandler);
+      });
     },
-    bodyMousemoveHandler (e) {
-      e.preventDefault()
+    bodyMousemoveHandler(e) {
+      e.preventDefault();
       if (e.which === 1 && this.isMouseDownOnBody === true) {
-        const offsetX = e.clientX - this.outProgressClientX
+        const offsetX = e.clientX - this.outProgressClientX;
         if (offsetX > 0) {
           if (e.clientX < this.$el.clientWidth + this.$el.offsetLeft) {
-            const decimal = (e.clientX - this.$el.offsetLeft) / this.$el.clientWidth
-            const percent = decimal * 100
-            this.dragWidthPercent = Math.min(percent, 100)
+            const decimal =
+              (e.clientX - this.$el.offsetLeft) / this.$el.clientWidth;
+            const percent = decimal * 100;
+            this.dragWidthPercent = Math.min(percent, 100);
           } else {
-            this.dragWidthPercent = 100
+            this.dragWidthPercent = 100;
           }
         } else if (offsetX < 0) {
           if (e.clientX > this.$el.offsetLeft) {
-            const decimal = (e.clientX - this.$el.offsetLeft) / this.$el.clientWidth
-            const percent = decimal * 100
-            this.dragWidthPercent = Math.max(percent, 0)
+            const decimal =
+              (e.clientX - this.$el.offsetLeft) / this.$el.clientWidth;
+            const percent = decimal * 100;
+            this.dragWidthPercent = Math.max(percent, 0);
           } else {
-            this.dragWidthPercent = 0
+            this.dragWidthPercent = 0;
           }
         }
       }
     },
-    resetDrag () {
-      this.useDragProgress = false
-      this.isMouseDownOnBall = false
-      this.isMouseDownOnBody = false
-      this.outProgressClientX = 0
-      this.max = 0.2
-      this.dragWidthPercent = this.progressPercent
+    resetDrag() {
+      this.useDragProgress = false;
+      this.isMouseDownOnBall = false;
+      this.isMouseDownOnBody = false;
+      this.outProgressClientX = 0;
+      this.max = 0.2;
+      this.dragWidthPercent = this.progressPercent;
       this.$router.replace({
         path: this.$route.path,
-        query: {}
-      })
+        query: {},
+      });
     },
-    increaseMaxRatio () {
-      this.adjustingRatio = true
+    increaseMaxRatio() {
+      this.adjustingRatio = true;
       setTimeout(() => {
-        const oldMax = this.max
-        this.max = parseFloat(Math.min(this.max + 0.1, 1.0).toFixed(1))
-        this.dragWidthPercent = Math.max(this.dragWidthPercent * (oldMax / this.max), 0)
-        this.updateRatioMaxParam()
-      }, 10)
+        const oldMax = this.max;
+        this.max = parseFloat(Math.min(this.max + 0.1, 1.0).toFixed(1));
+        this.dragWidthPercent = Math.max(
+          this.dragWidthPercent * (oldMax / this.max),
+          0
+        );
+        this.updateRatioMaxParam();
+      }, 10);
     },
-    decreaseMaxRatio () {
-      this.adjustingRatio = true
+    decreaseMaxRatio() {
+      this.adjustingRatio = true;
       setTimeout(() => {
-        const oldMax = this.max
-        this.previousDragWidthPercent = this.dragWidthPercent
-        this.max = parseFloat(Math.max(this.max - 0.1, 0.1).toFixed(1))
-        this.dragWidthPercent = Math.min(this.dragWidthPercent * (oldMax / this.max), 100)
-        this.updateRatioMaxParam()
-      }, 10)
+        const oldMax = this.max;
+        this.previousDragWidthPercent = this.dragWidthPercent;
+        this.max = parseFloat(Math.max(this.max - 0.1, 0.1).toFixed(1));
+        this.dragWidthPercent = Math.min(
+          this.dragWidthPercent * (oldMax / this.max),
+          100
+        );
+        this.updateRatioMaxParam();
+      }, 10);
     },
-    updateRatioMaxParam () {
+    updateRatioMaxParam() {
       this.$router.replace({
         path: this.$route.path,
         query: {
           ...this.$route.query,
-          max: this.max
-        }
-      })
+          max: this.max,
+        },
+      });
       setTimeout(() => {
-        this.adjustingRatio = false
-      }, 500)
-    }
-  }
-}
+        this.adjustingRatio = false;
+      }, 500);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .75s, left 0s 1s !important;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.75s, left 0s 1s !important;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0 !important;
@@ -545,7 +587,7 @@ export default {
   user-select: none;
   -webkit-touch-callout: none;
 
-  &[data-user-drag="true"] .labels > span.current {
+  &[data-user-drag='true'] .labels > span.current {
     @apply bg-green-200;
     @apply dark:bg-green-800;
 
@@ -580,7 +622,7 @@ export default {
         border: 1px solid rgb(31, 41, 55);
       }
 
-      &[data-passed="true"] {
+      &[data-passed='true'] {
         @apply bg-green-200;
         @apply dark:bg-green-800;
       }
@@ -614,7 +656,7 @@ export default {
       &:after {
         @apply text-blue-200;
         @apply dark:text-gray-600;
-        content: "";
+        content: '';
         position: absolute;
         top: 100%;
         left: 50%;
@@ -632,7 +674,7 @@ export default {
       top: calc(100% + 1em);
       transform: translateX(-50%);
 
-      &[data-passed="true"] {
+      &[data-passed='true'] {
         &:after {
           @apply text-green-200;
           @apply dark:text-green-800;
@@ -642,7 +684,7 @@ export default {
       &:after {
         @apply text-blue-100;
         @apply dark:text-gray-700;
-        content: "";
+        content: '';
         position: absolute;
         bottom: 100%;
         left: 50%;
@@ -659,17 +701,17 @@ export default {
       transition: left 1s 0.1s ease-out, opacity 0.5s 0.5s ease-in-out;
       opacity: 1;
 
-      [data-animate="none"] & {
+      [data-animate='none'] & {
         left: 0 !important;
         opacity: 0;
       }
 
       &.current {
-        [data-drag="true"] & {
+        [data-drag='true'] & {
           transition-duration: 0s !important;
           transition-delay: 0s !important;
         }
-        [data-adjusting-ratio="true"] & {
+        [data-adjusting-ratio='true'] & {
           transition-duration: 0.33s !important;
           transition-delay: 0s !important;
         }
@@ -717,10 +759,10 @@ export default {
       transition: opacity 0.5s 0.5s ease-in-out;
       opacity: 1;
 
-      [data-animate="none"] & {
+      [data-animate='none'] & {
         opacity: 0;
       }
-      [data-interactive="true"] & {
+      [data-interactive='true'] & {
         transition: opacity 0.5s 0.5s ease-in-out, left 0.33s 0s ease-out;
       }
     }
@@ -780,9 +822,7 @@ export default {
 }
 
 .progress {
-  @apply bg-gradient-to-r;
-  @apply from-red-500;
-  @apply to-red-400;
+  background: linear-gradient(to left, #f56565, #e53e3e);
   box-sizing: content-box;
   position: absolute;
   top: 0.25em;
@@ -795,14 +835,14 @@ export default {
   overflow: hidden;
   transition: max-width 1s 0.1s ease-out;
 
-  [data-animate="none"] & {
+  [data-animate='none'] & {
     max-width: 0 !important;
   }
-  [data-drag="true"] & {
+  [data-drag='true'] & {
     transition-duration: 0s !important;
     transition-delay: 0s !important;
   }
-  [data-adjusting-ratio="true"] & {
+  [data-adjusting-ratio='true'] & {
     transition-duration: 0.33s !important;
     transition-delay: 0s !important;
   }
@@ -815,7 +855,7 @@ export default {
     transform: translateY(-50%);
     transition: opacity 1s ease-out;
 
-    [data-animate="none"] & {
+    [data-animate='none'] & {
       opacity: 0 !important;
     }
   }
